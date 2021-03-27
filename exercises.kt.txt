@@ -1,0 +1,79 @@
+fun main() {
+    println()
+    val a  = arrayOf(arrayOf(51,42,11),arrayOf(38,5,5),arrayOf(81,128,66))
+    val b = arrayOf(3,-8,0,0,5,7)
+
+    println(secondWay(a))
+    println("________________________________________________")
+
+    println(sumDiagonals(a))
+    println("________________________________________________")
+
+
+    percorreMatrix(a)
+    println("________________________________________________")
+
+    plusMinus(b)
+
+}
+fun secondWay(arr:Array<Array<Int>>): Int {
+    var rRight = 0
+    var rLeft = 0
+    var p = 0
+    var pp = 2
+
+    for (i in arr) {
+        rLeft += (arr[p][p])
+        rRight += (arr[p][pp])
+        pp -= 1
+        p += 1
+    }
+    return abs(rLeft - rRight)
+}
+fun sumDiagonals(arr:Array<Array<Int>>): Int{
+    var rightDiagonal  = 0
+    var leftDiagonal   = 0
+    for (i in arr.indices){
+        rightDiagonal += arr[i][arr.size-1-i]
+        leftDiagonal  += arr[i][i]
+        println()
+    }
+    return abs(rightDiagonal - leftDiagonal)
+}
+fun percorreMatrix(arr: Array<Array<Int>>){
+
+    for (i in arr.indices){
+        for (j in arr.indices){
+            print(arr[i][j]); print(" ")
+
+        }
+        println()
+
+    }
+}
+fun plusMinus(arr: Array<Int>){
+    var zeros = 0F
+    var positivos = 0F
+    var negativos  = 0F
+    for(i in arr){
+        when {
+            i > 0 -> {
+                positivos++
+            }
+            i < 0 -> {
+                negativos++
+            }
+            i == 0 -> {
+                zeros++
+            }
+        }
+    }
+    positivos /= arr.size
+    negativos /= arr.size
+    zeros /= arr.size
+
+    println("%.6f".format(positivos))
+    println("%.6f".format(negativos))
+    println("%.6f".format(zeros))
+
+}
